@@ -1,0 +1,41 @@
+*{
+    box-sizing: border-box;
+    outline: none!important;
+    text-decoration: none!important;
+}
+h1{
+    text-align: center;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+.box{
+    width:450px;
+    min-height: 500px;
+    background-color: #ffffff; 
+    box-shadow: 0px 0px 1px ;
+    
+   
+}
+.user_input{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25px;
+}
+.input{
+    width: 350px;
+}
+.submit_input{
+    display:flex;
+    margin-top: 25px;
+    align-items: center;
+    justify-content: center;
+}
+.submit{
+    width:350px;
+    
+    height:50px;
+}
