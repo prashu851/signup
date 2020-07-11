@@ -36,6 +36,15 @@ h1{
 }
 .submit{
     width:350px;
-    
     height:50px;
+}
+.select_country{
+    width: 350px;
+}
+.phone_input{
+   min-width:350px;
+    margin-left: 50px;
+}
+.dropdown{
+    margin-left:50px;
 }

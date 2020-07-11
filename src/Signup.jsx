@@ -1,11 +1,10 @@
 import React from 'react'
 import './Signup.css'
 import TextField from '@material-ui/core/TextField'
-import Select from '@material-ui/core/Select'
-import InputLabel from '@material-ui/core/InputLabel'
+import Select from 'react-select'
 import countryList from 'react-select-country-list'
 import PhoneInput from 'react-phone-input-2'
-import 'react-phone-input-2/lib/material.css'
+import 'react-phone-input-2/lib/bootstrap.css'
 import Button from '@material-ui/core/Button'
 
 class Signup extends React.Component {
@@ -27,16 +26,19 @@ class Signup extends React.Component {
             <div className="container">
                 <form className="box">
                     <div className="user_input">
-                        <TextField className="input" label="Full Name" variant="outlined" required />
+                        <TextField className="input" label="Full Name" variant="outlined" />
                     </div>
                     <div className="user_input">
-                        <TextField className="input" label="Email" variant="outlined" />
+                        <TextField className="input" label="Email" variant="outlined" required />
                     </div>
                     <div className="user_input">
                         <TextField className="input" label="Password" variant="outlined" />
                     </div>
                     <div className="user_input">
-                        <Select className="input" labelId="Country" variant="outlined" options={this.state.options} value={this.state.value} onChange={this.changeHandler} />
+                        <Select className="select_country" labelId="Country" variant="outlined" options={this.state.options} value={this.state.value} onChange={this.changeHandler} />
+                    </div>
+                    <div className="user_input">
+                        <PhoneInput inputClass="phone_input" buttonClass="dropdown" country={'us'} value={this.state.phone} onChange={phone => this.setState({ phone })} />
                     </div>
                     <div className="submit_input">
                     <Button className="submit" variant="contained" color="primary">Sign Up</Button>
