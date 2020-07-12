@@ -14,6 +14,7 @@ class Login extends React.Component {
         }
         this.onLoginSubmit = this.onLoginSubmit.bind(this);
         this.onEmailChange = this.onEmailChange.bind(this);
+        this.validateEmail = this.validateEmail.bind(this);
     }
 
     onEmailChange(event) {
@@ -27,7 +28,7 @@ class Login extends React.Component {
         return emailPattern.test( this.state.emailName);
     }
 
-    onLoginSubmit() {
+    validateEmail() {
         if (this.isValidEmail()) {
             this.setState({
                 emailError: false
@@ -39,11 +40,20 @@ class Login extends React.Component {
         }
     }
 
+    onLoginSubmit() {
+        this.validateEmail();
+        if(!this.state.emailError && this.state.emailName !== '') {
+            fetch('http://localhost:4000/login');
+        } else {
+            console.log('invalid email');
+        }
+    }
+
     render() {
         return (
             <div className="login_form">
                 <div className="user_input">
-                    <TextField onChange={this.onEmailChange} className="input" label="Email" variant="outlined"/>
+                    <TextField onChange={this.onEmailChange} onBlur={this.validateEmail} className="input" label="Email" variant="outlined"/>
                     {this.state.emailError ? <label className="email_error_text">Email is not valid</label> : ''}
                 </div>
                 <div className="user_input">
