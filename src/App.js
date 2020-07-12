@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import Signup  from './components/Signup/Signup'
+import Login  from './components/Login/Login';
 
 class App extends React.Component {
 render(){
   return(
-    <Signup />
+    <Login />
   )
 }
 }
