@@ -12,6 +12,9 @@ class Signup extends React.Component {
         super(props);
         this.options = countryList().getData()
         this.state = {
+            fullName:'',
+            email:'',
+            password:'',
             options: this.options,
             value: null,
           }
@@ -25,6 +28,7 @@ class Signup extends React.Component {
                 <h1>Sign Up</h1>
             <div className="container">
                 <form className="box">
+                    
                     <div className="user_input">
                         <TextField className="input" label="Full Name" variant="outlined" />
                     </div>

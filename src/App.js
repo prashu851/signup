@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Signup  from './Signup'
+import Signup  from './components/Signup/Signup'
 
 class App extends React.Component {
 render(){
