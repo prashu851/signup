@@ -1,57 +1,132 @@
 import React from 'react'
 import './Signup.css'
 import TextField from '@material-ui/core/TextField'
-import Select from 'react-select'
-import countryList from 'react-select-country-list'
-import PhoneInput from 'react-phone-input-2'
+
+
 import 'react-phone-input-2/lib/bootstrap.css'
 import Button from '@material-ui/core/Button'
+import Grid from '@material-ui/core/Grid'
+import FullName from './FullName';
+import EmailPassword from './EmailPassword';
+import Address from './Address';
 
 class Signup extends React.Component {
-    constructor(props){
+
+    constructor(props) {
         super(props);
-        this.options = countryList().getData()
         this.state = {
-            fullName:'',
-            email:'',
-            password:'',
-            options: this.options,
-            value: null,
-          }
+            fullName: {
+                firstName: '',
+                lastName: '',
+                error: false
+            },
+            credentials: {
+                email: '',
+                password: '',
+                error: false
+            },
+            address: {
+                country: '',
+                region:'',
+                address:'',
+                pinCode:'',
+                phone:'',
+                error: false
+            }
+        }
+        
+        this.handleFullnameChange=this.handleFullnameChange.bind(this);
+        this.handleFullnameError = this.handleFullnameError.bind(this);
+        this.handleCredentialsChange=this.handleCredentialsChange.bind(this);
+        this.handleCredentialsError = this.handleCredentialsError.bind(this);
+        this.handleAddressChange=this.handleAddressChange.bind(this);
+        this.handleAddressError = this.handleAddressError.bind(this);
+        this.handleSubmit=this.handleSubmit.bind(this);
     }
-    changeHandler = value => {
-        this.setState({ value })
-      }
+
+    handleFullnameChange = (key, value) => {
+        const newState = {...this.state.fullName, [key]:value}
+        this.setState({
+            fullName: newState
+        })
+    }
+    handleFullnameError = (errorValue) => {
+        const newState = {...this.state.fullName, error:errorValue}
+        this.setState({
+            fullName: newState
+        })
+    }
+    handleCredentialsChange = (key, value) => {
+        const newState = {...this.state.credentials, [key]:value}
+        this.setState({
+            credentials: newState
+        })
+    }
+    handleCredentialsError = (errorValue) => {
+        const newState = {...this.state.credentials, error:errorValue}
+        this.setState({
+            credentials: newState
+        })
+    }
+    handleAddressChange = (key, value) => {
+        const newState = {...this.state.address, [key]:value}
+        this.setState({
+            address: newState
+        })
+    }
+    handleAddressError = (errorValue) => {
+        const newState = {...this.state.address, error:errorValue}
+        this.setState({
+            address: newState
+        })
+    }
+    handleSubmit(event) {
+            event.preventDefault()
+            console.log(this.state.fullName)
+            console.log(this.state.credentials)
+            console.log(this.state.address)
+    }
+
     render(){
         return(
-            <React.Fragment>
-                <h1>Sign Up</h1>
-            <div className="container">
-                <form className="box">
-                    
-                    <div className="user_input">
-                        <TextField className="input" label="Full Name" variant="outlined" />
-                    </div>
-                    <div className="user_input">
-                        <TextField className="input" label="Email" variant="outlined" required />
-                    </div>
-                    <div className="user_input">
-                        <TextField className="input" label="Password" variant="outlined" />
-                    </div>
-                    <div className="user_input">
-                        <Select className="select_country" labelId="Country" variant="outlined" options={this.state.options} value={this.state.value} onChange={this.changeHandler} />
-                    </div>
-                    <div className="user_input">
-                        <PhoneInput inputClass="phone_input" buttonClass="dropdown" country={'us'} value={this.state.phone} onChange={phone => this.setState({ phone })} />
-                    </div>
-                    <div className="submit_input">
-                    <Button className="submit" variant="contained" color="primary">Sign Up</Button>
-                    </div>
-                </form>
 
+                <div className="container">
+            
+                <form onSubmit = {this.handleSubmit} className="box">
+                <h1 className="heading">Sign Up</h1>
+                <Grid container>
+                    <FullName 
+                    onChange={this.handleFullnameChange}
+                    setError={this.handleFullnameError}
+                    firstName={this.state.fullName.firstName}
+                    lastName={this.state.fullName.lastName}
+                    />
+                    <EmailPassword 
+                    onChange={this.handleCredentialsChange}
+                    setError={this.handleCredentialsError}
+                    email={this.state.credentials.email}
+                    password={this.state.credentials.password}
+                    />
+                    <Address 
+                    onChange={this.handleAddressChange}
+                    setError={this.handleAddressError}
+                    country= {this.state.address.country}
+                    region={this.state.address.region}
+                    address={this.state.address.address}
+                    pinCode={this.state.address.pinCode}
+                    phone={this.state.address.phone}
+                    />
+                    <Grid item xs={12}>
+                    <div className="submit_input">
+                    <Button className="submit" variant="contained" color="primary" type="submit">Sign Up</Button>
+                    </div>
+                    </Grid>
+                    </Grid>
+                </form>
+            
             </div>
-            </React.Fragment>
         )
     }
 }
+
 export default Signup;

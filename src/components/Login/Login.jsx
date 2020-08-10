@@ -53,7 +53,11 @@ class Login extends React.Component {
         return (
             <div className="login_form">
                 <div className="user_input">
-                    <TextField onChange={this.onEmailChange} onBlur={this.validateEmail} className="input" label="Email" variant="outlined"/>
+                    <TextField onChange={this.onEmailChange} onBlur={this.validateEmail}
+                    error={this.state.emailError}
+                    className="input"
+                    label="Email"
+                    variant="outlined"/>
                     {this.state.emailError ? <label className="email_error_text">Email is not valid</label> : ''}
                 </div>
                 <div className="user_input">
